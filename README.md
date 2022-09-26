@@ -44,5 +44,6 @@ git clone  https://github.com/MathurinNkenfack/Hello-Computing-Ass.git
 ```
   Learn more on how to run [Cypress Command-Line](https://docs.cypress.io/guides/guides/command-line#What-you-ll-learn)
 
-
+- The App
+![geoKid](App.png)
   
