@@ -1,0 +1,28 @@
+@import ../../../assets/styles/mixins
+@import ../../../assets/styles/variables
+
+.heading
+    width: 100%
+
+    @include flex(column, center, center)
+    padding: 20px
+    letter-spacing: 5px
+    h1
+        font-weight: bold
+        font-size: 2.5rem
+        color: $primary
+        text-align: center
+        @media screen and (min-width: 300px)
+            font-size: 3rem
+        @media screen and (min-width: 1000px)
+            font-size: 5rem
+        
+    h3
+        font-size: 1rem
+        color: $secondary
+        text-align: center
+        @media screen and (min-width: 300px)
+            font-size: 1.5rem
+        @media screen and (min-width: 1000px)
+            font-size: 2rem
+        

@@ -1,0 +1,73 @@
+@import ../../../assets/styles/mixins
+@import ../../../assets/styles/variables
+      
+.container
+    @include flex(column, center, center)
+    width: 100%
+    font-size: 14px
+    height: 100%
+    padding: 20px 10px
+
+    .modal
+        
+        padding: 40px 20px
+        background-color: $primary_2
+        border-radius: 10px
+        min-height: 600px
+        @include flex(row, space-around,flex-start)
+        @media screen and (min-width: 300px)
+            flex-direction: column
+            width: 90%
+        @media screen and (min-width: 800px)
+            flex-direction: row
+            width: 80%
+        @media screen and (min-width: 1400px)
+            flex-direction: row
+            width: 60%
+        .side-2
+            @include flex(column,center,center)
+        .side-1, .side-2
+            height: inherit
+            padding: 10px
+            @media screen and (min-width: 300px)
+                width: 100%
+            @media screen and (min-width: 1000px)
+                width: 50%
+            
+            
+        .geometry-parameters
+            @include flex(column, flex-start, flex-start)
+            width: 100%
+
+            .input-grp
+                @include flex(column, flex-start, flex-start)
+                width:100%
+
+            .units
+                @include flex(column, flex-start, flex-start)
+                width: 100%
+                font-size: 1em
+        .btn-grp
+            @include flex(column, center, center)
+            padding: 20px
+            @media screen and (min-width: 300px)
+                width: 100%
+            @media screen and (min-width: 1000px)
+                width: 80%
+            .btn-submit
+                background-color: #d60052
+                color: white
+                transition: all 150ms cubic-bezier(.45,.05,.55,.95)
+                &:hover
+                    background-color: #af0245
+                    box-shadow: 0px 0px 2px #42021b7c
+                    transform: scale(0.98)
+                &:disabled
+                    background-color: #555252
+
+                    &:hover
+                        transform: none
+                        box-shadow: none
+                        cursor: not-allowed
+                    
+            

@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+html {
+  font-size: 12px;
+}
+
+body {
+  font-family: Lato, "Helvetica Neue", sans-serif;
+  background-color: #0066b9;
+  font-size: 10px;
+  margin: 0px;
+  padding: 0px;
+  padding-top: 20px;
+  height: 100%;
+}
+body * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}/*# sourceMappingURL=styles.css.map */

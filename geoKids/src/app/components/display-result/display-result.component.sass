@@ -1,0 +1,36 @@
+@import ../../../assets/styles/mixins
+@import ../../../assets/styles/variables
+
+@keyframes appear2
+    0%
+        opacity: 0
+        transform: translateY(-100px)
+
+    100%
+        opacity: 1
+        transform: translateY(0px)
+    
+.dis-box
+    width: 100%
+    padding: 10px
+    background-color: $primary_1
+    @include flex(row, space-around,center)
+    animation: appear2 300ms cubic-bezier(1,0,0.5,1)
+    .value
+        width: 90%
+        padding: 5px
+        @include flex(row, flex-start,center)
+    .dis-name
+        padding: 10px 5px
+        @media screen and (min-width: 300px)
+            font-size: 1.2em
+        @media screen and (min-width: 1000px)
+            font-size: 1.4em
+        color: #f8f8f8
+        text-transform: capitalize
+    .dis-value
+        padding: 10px 5px
+        font-size: 1.5em
+        color: #f8f8f8
+        font-weight: bolder
+   

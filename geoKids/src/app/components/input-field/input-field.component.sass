@@ -1,0 +1,63 @@
+@import ../../../assets/styles/mixins
+@import ../../../assets/styles/variables
+
+@keyframes appear
+    0%
+        opacity: 0
+        transform: translateY(-30px)
+
+    100%
+        opacity: 1
+        transform: translateY(0px)
+    
+.input-field
+    width: 100%
+    padding: 10px
+    @include flex(column, space-around,flex-start)
+
+    .input-label
+        width: 100%
+        padding: 10px 0px
+        font-size: 1.5em
+        color: $black
+        text-transform: capitalize
+    .select-geometry
+        width: 80%
+        padding: 10px 5px
+        border: none
+        color: $black
+        background-color: #ffffffd5
+        border-bottom: 2px solid $black
+        font-size: 1.2em
+        cursor: pointer
+        -webkit-appearance: none
+        -moz-appearance: none
+    .alert
+        @include flex(column, flex-start, flex-start)
+        background-color: $secondary20
+        color: #583c00
+        font-size: 1.2em
+        font-style: italic
+        width: 80%
+        margin: 5px 0px
+        padding: 10px
+        animation: appear 250ms cubic-bezier(1,0,0,1)
+
+        span::first-letter
+                text-transform: capitalize
+    .input-parameter
+        padding: 10px 5px
+        border: none
+        color: $black
+        font-size: 1.2em
+        transition: all 150ms cubic-bezier(.45,.05,.55,.95)
+        background-color: #ffffffd5
+        @media screen and (min-width: 300px)
+            width: 100%
+        @media screen and (min-width: 1000px)
+            flex-direction: row
+            width: 80%
+    
+        &:focus
+            border-bottom: 2px solid $primary
+            transform: translateY(-5px)

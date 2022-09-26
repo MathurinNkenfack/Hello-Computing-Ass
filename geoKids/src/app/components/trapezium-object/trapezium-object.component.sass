@@ -1,0 +1,35 @@
+@import ../../../assets/styles/mixins
+
+.trap
+    @include flex(row, center, center)
+    width: 100%
+    padding: 20px
+    position: relative
+    .p-1,.p-2, .p-3, .p-4, .p-5
+        font-size: 1em
+        text-transform: capitalize
+        padding: 15px 0px
+        position: absolute
+        top: 8%
+
+        .unit
+            text-transform: lowercase
+    .p-2
+        top: 40%
+        left: 15%
+    .p-3
+        top: 40%
+        right: 15%
+    .p-4
+        top: 80%
+    .p-5
+        top:50%
+        left:38%
+
+       
+
+    .svg-trap
+        padding: 25px 0px
+        min-width: 200px
+        max-width: 70%
+        max-height: 70%

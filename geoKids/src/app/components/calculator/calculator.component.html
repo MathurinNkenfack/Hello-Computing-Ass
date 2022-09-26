@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="modal">
+        <ng-container *ngIf="geometry && unit">
+        <div class="side-1">
+            <select-field [name]="'Figure'" [options]="geometries" (onSelect)="selectGeometry($event)" [first]="geometry.id" [idName]="false" [cyName]="'figure'"></select-field>
+            <div *ngIf="geometrySelected" class="geometry-parameters">
+                <select-field [name]="'unit'" [options] ="units" (onSelect)="selectUnit($event)" [first]="unit.id" class="units" [idName]="true" [cyName]="'parameter-unit'"></select-field>
+                <div *ngFor = " let parameter of geometry.parameter" class="input-grp">
+                    <input-field [parameter]="parameter" [value]="parameters[parameter]" (onKeyUp)="getData($event)" style="width:100%" (onValid)="validation($event, parameter)"></input-field>
+                </div>
+                <div class="btn-grp">
+                    <button class="btn btn-submit" [disabled]="!allValid" (click)="submit()" data-cy="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <div class="side-2">
+            <square-object [s] ="parameters.s ? parameters.s : 's'" [unit] ="unit.id" *ngIf="geometry.name === 'Square'"></square-object>
+            <rectangle-object [l] ="parameters.l ? parameters.l : 'l'" [w] ="parameters.w ? parameters.w : 'w'" [unit] ="unit.id" *ngIf="geometry.name === 'Rectangle'"></rectangle-object>
+            <circle-object [r] ="parameters.r ? parameters.r : 'r'" [unit] ="unit.id" *ngIf="geometry.name === 'Circle'"></circle-object>
+            <trapezium-object [a] ="parameters.a ? parameters.a : 'a'" [b] ="parameters.b ? parameters.b : 'b'" [c] ="parameters.c ? parameters.c : 'c'" [d] ="parameters.d ? parameters.d : 'd'" [h] ="parameters.h ? parameters.h : 'h'" [unit] ="unit.id" *ngIf="geometry.name === 'Trapezium'"></trapezium-object>
+            <ra-triangle-object [b] ="parameters.b ? parameters.b : 'b'" [c] ="parameters.c ? parameters.c : 'c'"  [h] ="parameters.h ? parameters.h : 'h'" [unit] ="unit.id" *ngIf="geometry.name === 'Right Angled Triangle'"></ra-triangle-object>
+            <equi-triangle-object [a] ="parameters.a ? parameters.a : 'a'"  [unit] ="unit.id" *ngIf="geometry.name === 'Equilateral Triangle'"></equi-triangle-object>
+            <iso-triangle-object [a] ="parameters.a ? parameters.a : 'a'" [b] ="parameters.b ? parameters.b : 'b'" [unit] ="unit.id" *ngIf="geometry.name === 'Isosceles Triangle'"></iso-triangle-object>
+            <sca-triangle-object [a] ="parameters.a ? parameters.a : 'a'" [b] ="parameters.b ? parameters.b : 'b'" [c] ="parameters.c ? parameters.c : 'c'" [unit] ="unit.id" *ngIf="geometry.name === 'Scalene Triangle'"></sca-triangle-object>
+            <div *ngIf="evaluate" style="margin-top: 50px; width:100%">
+                <display-result [name]="'perimeter'" [units]="units"  [value]="calculatePerimeter()" style="width:100%" [unit]="unit"></display-result>
+                <display-result [name]="'area'" [units]="units" [area]="true" [value]="calculateArea()" style="width:100%" [unit]="unit"></display-result>
+            </div>
+        </div>
+    </ng-container>
+    </div>
+</div>

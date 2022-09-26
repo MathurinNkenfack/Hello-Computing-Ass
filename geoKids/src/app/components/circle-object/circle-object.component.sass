@@ -1,0 +1,26 @@
+@import ../../../assets/styles/mixins
+
+.circle
+    @include flex(row, center, center)
+    width: 100%
+    padding: 20px
+    position: relative
+    .p-r
+        font-size: 1em
+        padding: 10px 0px
+        text-transform: capitalize
+        padding: 0px 0px
+        position: absolute
+        top: 40%
+        left: 52%
+
+        .unit
+            text-transform: lowercase
+
+    .svg-circle
+        @include flex(row, center, center)
+        padding: 25px 0px
+        min-width: 200px
+        min-height: 200px
+        max-width: 75%
+        max-height: 75%

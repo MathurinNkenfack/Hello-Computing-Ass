@@ -1,0 +1,31 @@
+@import ../../../assets/styles/mixins
+@import ../../../assets/styles/variables
+    
+.select-field
+    width: 100%
+    padding: 10px
+    @include flex(column, flex-start,flex-start)
+
+    .input-label
+        width: 100%
+        padding: 10px 0px
+        font-size: 1.5em
+        color: $black
+        text-transform: capitalize
+    .select-input
+        padding: 10px 5px
+        border: none
+        color: $black
+        background-color: #ffffffd5
+        border-bottom: 2px solid $black
+        font-size: 1.2em
+        cursor: pointer
+        -webkit-appearance: none
+        -moz-appearance: none
+        @media screen and (min-width: 300px)
+            width: 100%
+        @media screen and (min-width: 1000px)
+            width: 80%
+    .sup-2
+        font-size: 1px
+        padding: 0px 0px 20px 0px

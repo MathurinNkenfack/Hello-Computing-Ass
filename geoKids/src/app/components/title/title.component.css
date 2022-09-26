@@ -1,0 +1,28 @@
+.heading {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  letter-spacing: 5px;
+}
+.heading h1 {
+  font-weight: bold;
+  font-size: 5rem;
+  color: #070D59;
+}
+@media screen and (min-width: 300px) {
+  .heading h1 {
+    font-size: 2rem;
+  }
+}
+.heading h3 {
+  font-size: 2.5rem;
+  color: #ffbb00;
+}
+@media screen and (min-width: 300px) {
+  .heading h3 {
+    font-size: 2rem;
+  }
+}/*# sourceMappingURL=title.component.css.map */

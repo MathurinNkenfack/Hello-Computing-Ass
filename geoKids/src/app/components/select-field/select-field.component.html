@@ -1,0 +1,9 @@
+<div class="select-field">
+    <span *ngIf="name !== ''"class="input-label">{{name}}</span>
+    <select class="select-input" (change)="selectOption($event)" attr.data-cy={{cyName}}>
+        <option *ngFor = "let option of options;" [value]="option.id" [selected]="option.id === first">
+            {{ idName? option.id: option.name }}
+            <span *ngIf="area" class="sup-2">²</span>
+        </option>
+    </select>
+</div>

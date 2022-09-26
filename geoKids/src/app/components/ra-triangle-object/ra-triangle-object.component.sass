@@ -1,0 +1,25 @@
+@import ../../../assets/styles/mixins
+
+.ra-triangle
+    @include flex(row, center, center)
+    width: 100%
+    padding: 20px
+    position: relative
+    .p-1, .p-2, .p-3
+        font-size: 1em
+        text-transform: capitalize
+        padding: 15px 0px
+        position: absolute
+        left: 5%
+
+        .unit
+            text-transform: lowercase
+    .p-2
+        bottom: 15%
+        left: 40%
+    .p-3
+        left: 65%
+    .svg-ra-triangle
+        padding: 25px 0px
+        min-width: 200px
+        max-width: 80%

@@ -1,0 +1,12 @@
+<div class="input-field" [formGroup]="group">
+    <span class="input-label">{{parameter}}</span>
+    <input type="text" class="input-parameter" formControlName="{{parameter}}" (keyup)="keyUp($event)" name="{{parameter}}" [value]="value" attr.data-cy="{{parameter}}">
+    <div *ngIf="controller?.invalid && (controller?.dirty || controller?.touched)" class="alert">
+        <span *ngIf="controller?.errors?.['required']">
+            {{parameter}} is required.
+        </span>
+        <span *ngIf="controller?.errors?.['pattern']">
+            {{parameter}} must be number.
+        </span>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="dis-box">
+    <div class="value">
+        <span class="dis-name">{{name + " : "}}</span>
+        <span class="dis-value" [attr.data-cy]="name">{{value + " " + unit.id +(area?"²":"")}}</span>
+    </div>
+    <select-field [options]="units" [first]="unit.id" [area]="area" style="width:40%" [idName]="true" (onSelect)="selectUnit($event)" [cyName]="name + '-units'"></select-field>
+</div>
