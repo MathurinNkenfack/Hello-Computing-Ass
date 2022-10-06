@@ -1,0 +1,44 @@
+recruitment-task.txt
+geoAPi/.env
+geoAPi/node_modules
+
+# Compiled output
+geoKids/dist
+geoKids/tmp
+geoKids/out-tsc
+geoKids/bazel-out
+
+# Node
+geoKids/node_modules
+geoKids/npm-debug.log
+geoKids/yarn-error.log
+
+# IDEs and editors
+geoKids/.idea/
+geoKids/.project
+geoKids/.classpath
+geoKids/.c9/
+geoKids/*.launch
+geoKids/.settings/
+geoKids/*.sublime-workspace
+
+# Visual Studio Code
+geoKids/.vscode/*
+geoKids/!.vscode/settings.json
+geoKids/!.vscode/tasks.json
+geoKids/!.vscode/launch.json
+geoKids/!.vscode/extensions.json
+geoKids/.history/*
+
+# Miscellaneous
+geoKids/.angular/cache
+geoKids/.sass-cache/
+geoKids/connect.lock
+geoKids/coverage
+geoKids/libpeerconnection.log
+geoKids/testem.log
+geoKids/typings
+
+# System files
+geoKids/.DS_Store
+geoKids/Thumbs.db
