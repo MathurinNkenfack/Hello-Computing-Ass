@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Units } from 'src/app/models';
+import { CalculatorService } from 'src/app/services/calculator/calculator.service';
+import { HttpService } from 'src/app/services/http/http.service';
 
 @Component({
   selector: 'display-result',
@@ -8,38 +10,53 @@ import { Units } from 'src/app/models';
 })
 export class DisplayResultComponent {
   @Input() public name:string = "";
-  @Input() public value:string = "";
+  public value:string = "";
   @Input() public area:boolean = false;
-  @Input() public units:Array<Units>;
-  @Input() public unit:Units;
-  constructor() { }
+  public displayValue: string = "";
+  public units:Array<Units>;
+  public unit:Units;
+
+  constructor(private httpService: HttpService, private calculatorService: CalculatorService) {
+    calculatorService.unitChosen$.subscribe(u => {
+      this.unit = u;
+    });
+   }
 
   ngOnInit(): void {
-  }
-
-  //round decimal number to four digits after decimal point if neccessary
-  roundUp(n: string){
-    if(n.indexOf(".")){
-      var count = n.length -1 - n.indexOf(".");
-      console.log(count);
-      if(count <= 4){
-        return n
-      }else{
-        return parseFloat(parseFloat(n).toFixed(4)).toString();
-      }
+    this.getUnits();
+    if(this.area){
+      this.calculatorService.area$.subscribe(c => {
+        this.value = c;
+        this.displayValue = c;
+      });
     }else{
-      return n;
+      this.calculatorService.perimeter$.subscribe(c => {
+        this.value = c;
+        this.displayValue = c;
+      });
     }
   }
+
+ 
 
   changeValueUnit(conversion:Units['conversion'], to:string){
     if(this.name === "area"){
       var converter = <any>conversion.area;
-      this.value = this.roundUp((parseFloat(this.value) * parseFloat(converter[to])).toString());
+      this.value = parseFloat((parseFloat(this.value) * parseFloat(converter[to])).toString()).toString();
+      console.log(this.value);
+      this.displayValue = this.calculatorService.roundUp(this.value);
     }else{
       var converter = <any>conversion.length;
-      this.value = this.roundUp((parseFloat(this.value) * parseFloat(converter[to])).toString());
+      this.value = parseFloat((parseFloat(this.value) * parseFloat(converter[to])).toString()).toString();
+      console.log(this.value);
+      this.displayValue = this.calculatorService.roundUp(this.value);
     }
+  }
+
+  getUnits(): void{
+    this.httpService.getUnits().subscribe((u: Array<Units>) => {
+      this.units = u;
+    });
   }
   
   selectUnit(event:string){

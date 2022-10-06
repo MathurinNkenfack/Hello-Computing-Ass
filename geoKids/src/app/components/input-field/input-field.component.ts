@@ -29,7 +29,7 @@ export class InputFieldComponent {
     this.onValid.emit(this.controller?.valid);
   }
   setGroup(){
-    var pattern = '(([.]([1-9]|([0-9]*)([1-9]+)))|(([0-9]|[1-9]+([0-9]*))(([.]([1-9]|([0-9]*)([1-9]+)))?)))';
+    var pattern = '(([.]([1-9]|([0-9]*)([1-9]+)))((e[-]?[1-9]+)?)|(([0-9]|[1-9]+([0-9]*))(([.]([1-9]|([0-9]*)([1-9]+)))?)(((e[-]?[1-9]+)?))))';
     var controler = new FormControl(this.value, [Validators.required, Validators.pattern(pattern)]);
     this.group = new FormGroup({[this.parameter]: controler });
   }

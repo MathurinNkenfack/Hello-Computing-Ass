@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { Geometry, Units } from 'src/app/models';
-import { HttpService } from 'src/app/services/http.service';
+import { HttpService } from 'src/app/services/http/http.service';
+import { CalculatorService} from 'src/app/services/calculator/calculator.service';
 
 @Component({
   selector: 'app-calculator',
@@ -21,7 +22,7 @@ export class CalculatorComponent implements OnInit {
   public parametersValid:any = {};
   public allValid = false;
   
-  constructor(private httpService: HttpService) { 
+  constructor(private httpService: HttpService, private calculatorService: CalculatorService) { 
   }
 
   ngOnInit(): void {
@@ -29,8 +30,6 @@ export class CalculatorComponent implements OnInit {
       this.getUnits();
   }
 
-  
-  
   getData(event: Event){
     var element = event.target as HTMLInputElement;
     this.parameters[element.name] = element.value
@@ -53,29 +52,27 @@ export class CalculatorComponent implements OnInit {
   submit(){
     if(this.allValid){
       this.evaluate = true;
+      this.calculatorService.submitUnit(this.unit);
+      this.calculatorService.submitArea(this.calculateArea());
+      this.calculatorService.submitPerimeter(this.calculatePerimeter());
     }
     
   }
 
   calculateArea(): string{
-    var areaFn = new Function(...this.geometry.area.parameter, "return " + this.geometry.area.formula);
-    var p = [];
+    var values = [];
     for(let i = 0; i < this.geometry.area.parameter.length; i++){
-      p.push(this.parameters[this.geometry.area.parameter[i]]);
+      values.push(this.parameters[this.geometry.area.parameter[i]]);
     }
-    var result = (<Number>areaFn(...p)).toString();
-    console.log(result);
-    return this.roundUp(result);
+    return this.calculatorService.compute(this.geometry.area.parameter, this.geometry.area.formula, values)
   }
+
   calculatePerimeter(): string{
-    var perimeterFn = new Function(...this.geometry.perimeter.parameter, "return " + this.geometry.perimeter.formula);
-    var p = [];
+    var values = [];
     for(let i = 0; i < this.geometry.perimeter.parameter.length; i++){
-      p.push(this.parameters[this.geometry.perimeter.parameter[i]]);
+      values.push(this.parameters[this.geometry.perimeter.parameter[i]]);
     }
-    var result = (<number>perimeterFn(...p)).toString();
-    console.log(result);
-    return this.roundUp(result);
+    return this.calculatorService.compute(this.geometry.perimeter.parameter, this.geometry.perimeter.formula, values)
   }
 
   setParameters(){
@@ -101,23 +98,9 @@ export class CalculatorComponent implements OnInit {
     var id = event;
     this.geometry = <Geometry> this.geometries.find((g)=> g.id === id);
     this.geometrySelected = true;
+    this.setParameters();
     this.allValid = false
     this.evaluate = false;
-  }
-
-  //round decimal number to 4 digits after decimal point if neccessary
-  roundUp(n: string){
-    if(n.indexOf(".")){
-      var count = n.length -1 - n.indexOf(".");
-      console.log(count);
-      if(count <= 4){
-        return n
-      }else{
-        return parseFloat(parseFloat(n).toFixed(4)).toString();
-      }
-    }else{
-      return n;
-    }
   }
 
   changeParameterUnits(from:string, to:string){
@@ -131,7 +114,7 @@ export class CalculatorComponent implements OnInit {
         keys.forEach((k)=>{
           if(this.parameters[k] !== null){
             var result = (parseFloat(this.parameters[k])*parseFloat(value)).toString()
-            this.parameters[k] = this.roundUp(result);
+            this.parameters[k] = this.calculatorService.roundUp(result);
           }  
         })
       }else{
@@ -147,6 +130,7 @@ export class CalculatorComponent implements OnInit {
     var from = this.unit.id
     var id = event;
     this.unit = <Units> this.units.find((u)=> u.id === id);
+    this.calculatorService.submitUnit(this.unit);
     this.changeParameterUnits(from, id);
     
   }
@@ -162,6 +146,7 @@ export class CalculatorComponent implements OnInit {
     this.httpService.getUnits().subscribe((u: Array<Units>) => {
       this.units = u;
       this.unit = <Units>u.find((el)=>el.id ==="m");
+      this.calculatorService.submitUnit(this.unit);
       this.unitSelected = true;
     });
   }

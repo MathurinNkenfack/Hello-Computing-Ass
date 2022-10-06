@@ -9,7 +9,7 @@ const geometries = [
         }, 
         perimeter:{
             parameter: ["s"],
-            formula: "s*4"
+            formula: "parseFloat(s)*4"
         }
     },
     {
@@ -31,11 +31,11 @@ const geometries = [
         parameter: ["r"],
         area: {
             parameter: ["r"],
-            formula: "Math.PI*(r*r)"
+            formula: "Math.PI*(parseFloat(r)*parseFloat(r))"
         }, 
         perimeter:{
             parameter: ["r"],
-            formula: "2*Math.PI*r"
+            formula: "2*Math.PI*parseFloat(r)"
         }
     },
     {
@@ -44,7 +44,7 @@ const geometries = [
         parameter: ["a","b","c","d","h"],
         area: {
             parameter: ["a", "b", "h"],
-            formula: "0.5*(parseFloat(a)+parseFloat(b))*h"
+            formula: "0.5*(parseFloat(a)+parseFloat(b))*parseFloat(h)"
         }, 
         perimeter:{
             parameter: ["a", "b", "c", "d"],
@@ -57,7 +57,7 @@ const geometries = [
         parameter: ["b","h","c",],
         area: {
             parameter: ["b", "h"],
-            formula: "0.5*(b*h)"
+            formula: "0.5*(parseFloat(b)*parseFloat(h))"
         }, 
         perimeter:{
             parameter: ["b", "h", "c"],
@@ -70,11 +70,11 @@ const geometries = [
         parameter: ["a"],
         area: {
             parameter: ["a"],
-            formula: "0.433012702*(a*a)"
+            formula: "0.433012702*(parseFloat(a)*parseFloat(a))"
         }, 
         perimeter:{
             parameter: ["a"],
-            formula: "a*3"
+            formula: "parseFloat(a)*3"
         }
     },
     {
@@ -82,12 +82,12 @@ const geometries = [
         name:"Isosceles Triangle",
         parameter: ["a", "b"],
         area: {
-            parameter: ["a"],
-            formula: "0.25*b*( Math.sqrt(Math.pow((2*a), 2) - Math.pow(b, 2)))"
+            parameter: ["a", "b"],
+            formula: "0.25*b*( Math.sqrt(Math.pow((2*parseFloat(a)), 2) - Math.pow(parseFloat(b), 2)))"
         }, 
         perimeter:{
             parameter: ["a", "b"],
-            formula: "(2*a) + parseFloat(b)"
+            formula: "(2*parseFloat(a)) + parseFloat(b)"
         }
     },
     {
@@ -96,7 +96,7 @@ const geometries = [
         parameter: ["a", "b", "c"],
         area: {
             parameter: ["a", "b", "c"],
-            formula: "Math.sqrt(((a+b+c)/2)*((b+c-a)/2)*((a+c-b)/2)*((a+b-c)/2))"
+            formula: "Math.sqrt(((parseFloat(a)+parseFloat(b)+parseFloat(c))/2)*((parseFloat(b)+parseFloat(c)-parseFloat(a))/2)*((parseFloat(a)+parseFloat(c)-parseFloat(b))/2)*((parseFloat(a)+parseFloat(b)-parseFloat(c))/2))"
         }, 
         perimeter:{
             parameter: ["a", "b", "c"],

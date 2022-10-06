@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CalculatorService } from 'src/app/services/calculator/calculator.service';
 
 @Component({
   selector: 'circle-object',
@@ -7,8 +8,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CircleObjectComponent implements OnInit {
   @Input() public r:string = "r";
-  @Input() public unit:string = "m";
-  constructor() { }
+  public unit:string = "m";
+  constructor(private calculatorService: CalculatorService) {
+    calculatorService.unitChosen$.subscribe(u => {
+      this.unit = u.id;
+    });
+   }
 
   ngOnInit(): void {
   }
